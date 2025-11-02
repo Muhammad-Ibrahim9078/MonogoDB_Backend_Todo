@@ -27,7 +27,7 @@ const userSchema = new mongoose.Schema({
 const User = mongoose.model("User", userSchema);
 
 // ✅ POST — Create User
-app.post("/users", async (req, res) => {
+app.post("/task", async (req, res) => {
   try {
     const newUser = new User(req.body);
     await newUser.save(); // <-- Save in MongoDB
@@ -38,7 +38,7 @@ app.post("/users", async (req, res) => {
 });
 
 // ✅ GET — Read All Users
-app.get("/users", async (req, res) => {
+app.get("/task", async (req, res) => {
   try {
     const users = await User.find(); // <-- Get from MongoDB
     res.send(users);
@@ -48,7 +48,7 @@ app.get("/users", async (req, res) => {
 });
 
 // ✅ DELETE — Delete User by ID
-app.delete("/users/:id", async (req, res) => {
+app.delete("/task/:id", async (req, res) => {
   try {
     await User.findByIdAndDelete(req.params.id); // <-- Delete from DB
     res.send("Deleted Successfully 🗑️");
@@ -58,7 +58,7 @@ app.delete("/users/:id", async (req, res) => {
 });
 
 // ✅ PATCH — Update User by ID
-app.patch("/users/:id", async (req, res) => {
+app.patch("/task/:id", async (req, res) => {
   try {
     await User.findByIdAndUpdate(req.params.id, req.body, { new: true }); // <-- Update in DB
     res.send("Updated Successfully ✏️");
